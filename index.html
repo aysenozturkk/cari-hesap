@@ -37,7 +37,7 @@
             text-align: center;
             position: relative;
         }
-        
+
         .header::before {
             content: '';
             position: absolute;
@@ -45,9 +45,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
-                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+            background:
+                linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
             background-size: 40px 40px;
         }
 
@@ -389,6 +389,54 @@
             background: #4b5563;
         }
 
+        .qr-modal-content {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            max-width: 320px;
+            width: 90%;
+        }
+
+        .qr-modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .qr-modal-download {
+            background: #059669;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .qr-modal-download:hover {
+            background: #047857;
+        }
+
+        @media (max-width: 768px) {
+            .qr-modal-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .qr-modal-download,
+            .qr-modal-close {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+
         .footer-section {
             background: #f8fafc;
             padding: 24px 32px;
@@ -672,7 +720,9 @@
         <!-- Header -->
         <div class="header">
             <div class="header-content">
-                <div class="company-logo" style="background-image: url('./images/logo.png'); background-size: contain; background-position: center; background-repeat: no-repeat;"></div>
+                <div class="company-logo"
+                    style="background-image: url('./images/logo.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+                </div>
                 <h1>CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ.</h1>
                 <p class="subtitle">Cari Hesap Bilgileri Formu</p>
             </div>
@@ -688,7 +738,8 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Adres</span>
-                    <span class="meta-value" id="headerAddress">Yeni Bağlıca Mh. Kızılelma Cd. Ozan City No:32/1 Kapı No:46 Etimesgut / ANKARA</span>
+                    <span class="meta-value" id="headerAddress">Yeni Bağlıca Mh. Kızılelma Cd. Ozan City No:32/1 Kapı
+                        No:46 Etimesgut / ANKARA</span>
                     <button class="meta-copy-btn" onclick="copyToClipboard('headerAddress', this)">Kopyala</button>
                 </div>
                 <div class="meta-item">
@@ -713,8 +764,8 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">E-mail</span>
-                    <span class="meta-value" id="headerEmail">finans@clbyazilim.com</span>
-                    <button class="meta-copy-btn" onclick="copyToClipboard('headerEmail', this)">Kopyala</button>
+                    <span class="meta-value" id="headerEmail2">finans@clbyazilim.com</span>
+                    <button class="meta-copy-btn" onclick="copyToClipboard('headerEmail2', this)">Kopyala</button>
                 </div>
             </div>
 
@@ -745,7 +796,8 @@
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Hesap Sahibi</span>
-                                <div class="detail-value" id="enpara_tl_holder">CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ.</div>
+                                <div class="detail-value" id="enpara_tl_holder">CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ.
+                                </div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
                                         onclick="copyToClipboard('enpara_tl_holder', this)">Kopyala</button>
@@ -805,7 +857,8 @@
                                 <span class="detail-label">IBAN</span>
                                 <div class="detail-value" id="enpara_usd_iban">TR14 0015 7000 0000 0130 5130 75</div>
                                 <div class="button-group">
-                                    <button class="copy-btn-small" onclick="copyToClipboard('enpara_usd_iban', this)">Kopyala</button>
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_usd_iban', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
@@ -828,7 +881,8 @@
                                 <span class="detail-label">SWIFT</span>
                                 <div class="detail-value" id="enpara_usd_swift">ENASTRISXXX</div>
                                 <div class="button-group">
-                                    <button class="copy-btn-small" onclick="copyToClipboard('enpara_usd_swift', this)">Kopyala</button>
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_usd_swift', this)">Kopyala</button>
                                 </div>
                             </div>
                         </div>
@@ -840,12 +894,13 @@
                         <div class="currency-section">
                             <div class="currency-title">
                                 <span>🇹🇷 Türk Lirası (TL) Hesabı</span>
-                                <button class="currency-qr-btn"
-                                    onclick="showQR('vakifbank_tl', 'VAKIFBANK TL IBAN')">QR ile Gönder</button>
+                                <button class="currency-qr-btn" onclick="showQR('vakifbank_tl', 'VAKIFBANK TL IBAN')">QR
+                                    ile Gönder</button>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Hesap Sahibi</span>
-                                <div class="detail-value" id="vakifbank_tl_holder">CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ.</div>
+                                <div class="detail-value" id="vakifbank_tl_holder">CLB YAZILIM DANIŞMANLIK TİC. LTD.
+                                    ŞTİ.</div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
                                         onclick="copyToClipboard('vakifbank_tl_holder', this)">Kopyala</button>
@@ -905,7 +960,8 @@
                                 <span class="detail-label">IBAN</span>
                                 <div class="detail-value" id="vakifbank_usd_iban">TR31 0001 5001 5804 8023 4494 42</div>
                                 <div class="button-group">
-                                    <button class="copy-btn-small" onclick="copyToClipboard('vakifbank_usd_iban', this)">Kopyala</button>
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('vakifbank_usd_iban', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
@@ -928,7 +984,8 @@
                                 <span class="detail-label">SWIFT</span>
                                 <div class="detail-value" id="vakifbank_usd_swift">TVBATR2AXXX</div>
                                 <div class="button-group">
-                                    <button class="copy-btn-small" onclick="copyToClipboard('vakifbank_usd_swift', this)">Kopyala</button>
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('vakifbank_usd_swift', this)">Kopyala</button>
                                 </div>
                             </div>
                         </div>
@@ -940,11 +997,13 @@
                         <div class="currency-section">
                             <div class="currency-title">
                                 <span>🇹🇷 Türk Lirası (TL) Hesabı</span>
-                                <button class="currency-qr-btn" onclick="showQR('qnb_tl', 'QNB FİNANSBANK TL IBAN')">QR ile Gönder</button>
+                                <button class="currency-qr-btn" onclick="showQR('qnb_tl', 'QNB FİNANSBANK TL IBAN')">QR
+                                    ile Gönder</button>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Hesap Sahibi</span>
-                                <div class="detail-value" id="qnb_tl_holder">CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ.</div>
+                                <div class="detail-value" id="qnb_tl_holder">CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ.
+                                </div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
                                         onclick="copyToClipboard('qnb_tl_holder', this)">Kopyala</button>
@@ -1004,7 +1063,8 @@
                                 <span class="detail-label">IBAN</span>
                                 <div class="detail-value" id="qnb_usd_iban">TR78 0011 1000 0000 0130 5006 73</div>
                                 <div class="button-group">
-                                    <button class="copy-btn-small" onclick="copyToClipboard('qnb_usd_iban', this)">Kopyala</button>
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('qnb_usd_iban', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
@@ -1027,7 +1087,8 @@
                                 <span class="detail-label">SWIFT</span>
                                 <div class="detail-value" id="qnb_usd_swift">FNNBTRISOPS</div>
                                 <div class="button-group">
-                                    <button class="copy-btn-small" onclick="copyToClipboard('qnb_usd_swift', this)">Kopyala</button>
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('qnb_usd_swift', this)">Kopyala</button>
                                 </div>
                             </div>
                         </div>
@@ -1039,12 +1100,13 @@
                         <div class="currency-section">
                             <div class="currency-title">
                                 <span>🇹🇷 Türk Lirası (TL) Hesabı</span>
-                                <button class="currency-qr-btn"
-                                    onclick="showQR('isbank_tl', 'İŞ BANKASI TL IBAN')">QR ile Gönder</button>
+                                <button class="currency-qr-btn" onclick="showQR('isbank_tl', 'İŞ BANKASI TL IBAN')">QR
+                                    ile Gönder</button>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Hesap Sahibi</span>
-                                <div class="detail-value" id="isbank_tl_holder">CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ.</div>
+                                <div class="detail-value" id="isbank_tl_holder">CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ.
+                                </div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
                                         onclick="copyToClipboard('isbank_tl_holder', this)">Kopyala</button>
@@ -1062,8 +1124,8 @@
                         <div class="currency-section">
                             <div class="currency-title">
                                 <span>🇪🇺 Euro (EUR) Hesabı</span>
-                                <button class="currency-qr-btn"
-                                    onclick="showQR('isbank_eur', 'İŞ BANKASI EUR IBAN')">QR ile Gönder</button>
+                                <button class="currency-qr-btn" onclick="showQR('isbank_eur', 'İŞ BANKASI EUR IBAN')">QR
+                                    ile Gönder</button>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">IBAN</span>
@@ -1101,13 +1163,15 @@
                         <div class="currency-section">
                             <div class="currency-title">
                                 <span>🇺🇸 Dolar (USD) Hesabı</span>
-                                <button class="currency-qr-btn" onclick="showQR('isbank_usd', 'İŞ BANKASI USD IBAN')">QR ile Gönder</button>
+                                <button class="currency-qr-btn" onclick="showQR('isbank_usd', 'İŞ BANKASI USD IBAN')">QR
+                                    ile Gönder</button>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">IBAN</span>
                                 <div class="detail-value" id="isbank_usd_iban">TR21 0006 4000 0022 0030 1349 55</div>
                                 <div class="button-group">
-                                    <button class="copy-btn-small" onclick="copyToClipboard('isbank_usd_iban', this)">Kopyala</button>
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('isbank_usd_iban', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
@@ -1130,7 +1194,8 @@
                                 <span class="detail-label">SWIFT</span>
                                 <div class="detail-value" id="isbank_usd_swift">ISBKTRIS</div>
                                 <div class="button-group">
-                                    <button class="copy-btn-small" onclick="copyToClipboard('isbank_usd_swift', this)">Kopyala</button>
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('isbank_usd_swift', this)">Kopyala</button>
                                 </div>
                             </div>
                         </div>
@@ -1151,7 +1216,8 @@
                     </div>
                     <div class="contact-item">
                         <span class="contact-icon">✉️</span>
-                        <a href="mailto:destek@clbyazilim.com" class="contact-text" style="color: #1f2937; text-decoration: none;">destek@clbyazilim.com</a>
+                        <a href="mailto:destek@clbyazilim.com" class="contact-text"
+                            style="color: #1f2937; text-decoration: none;">destek@clbyazilim.com</a>
                     </div>
                     <div class="contact-item">
                         <span class="contact-icon">✉️</span>
@@ -1171,7 +1237,8 @@
                     </div>
                     <div class="contact-item">
                         <span class="contact-icon">🌐</span>
-                        <a href="https://www.clbyazilim.com" target="_blank" class="contact-text" style="color: #1f2937; text-decoration: none;">www.clbyazilim.com</a>
+                        <a href="https://www.clbyazilim.com" target="_blank" class="contact-text"
+                            style="color: #1f2937; text-decoration: none;">www.clbyazilim.com</a>
                     </div>
                 </div>
             </div>
@@ -1182,7 +1249,8 @@
                     telefonla iletişime geçiniz.</p>
             </div>
             <div class="document-footer">
-                <p>© <span id="currentYear">2025</span> CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ. Tüm hakları saklıdır. | Son güncelleme: <span id="footerDate"></span></p>
+                <p>© <span id="currentYear">2025</span> CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ. Tüm hakları saklıdır. |
+                    Son güncelleme: <span id="footerDate"></span></p>
             </div>
         </div>
     </div>
@@ -1194,7 +1262,12 @@
             <div class="qr-modal-image" id="qrModalImage">
                 <div style="color: #6b7280; font-size: 14px;">QR kod yükleniyor...</div>
             </div>
-            <button class="qr-modal-close" onclick="closeQR()">Kapat</button>
+            <div class="qr-modal-buttons">
+                <button class="qr-modal-download" onclick="downloadQR()">
+                    <span>⬇️</span> QR Kodu İndir
+                </button>
+                <button class="qr-modal-close" onclick="closeQR()">Kapat</button>
+            </div>
         </div>
     </div>
 
@@ -1203,6 +1276,8 @@
     </div>
 
     <script>
+        let currentQRCode = '';
+        let currentQRTitle = '';
         const today = new Date();
         const currentYear = today.getFullYear();
         const formattedDate = today.toLocaleDateString('tr-TR', {
@@ -1222,20 +1297,23 @@
             const modalImage = document.getElementById('qrModalImage');
 
             modalTitle.textContent = title;
-    
+
+            currentQRCode = qrCode;
+            currentQRTitle = title;
+
             modalImage.innerHTML = '<div style="color: #6b7280; font-size: 14px;">QR kod kontrol ediliyor...</div>';
             modal.classList.add('active');
 
-    
+
             const img = new Image();
 
             img.onload = function () {
-        
+
                 modalImage.innerHTML = `<img src="./images/${qrCode}_qr.svg" alt="${title} QR Kod" style="width: 100%; height: 100%; object-fit: contain;">`;
             };
 
             img.onerror = function () {
-        
+
                 modalImage.innerHTML = `
             <div style="color: #ef4444; font-size: 14px; text-align: center; padding: 20px; line-height: 1.5;">
                 <div style="font-size: 24px; margin-bottom: 10px;">⚠️</div>
@@ -1247,16 +1325,92 @@
         `;
             };
 
-    
+
             img.src = `./images/${qrCode}_qr.svg`;
         }
 
+        function downloadQR() {
+            if (!currentQRCode) {
+                alert('İndirilecek QR kod bulunamadı.');
+                return;
+            }
+
+            try {
+                if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+                    fetch(`./images/${currentQRCode}_qr.svg`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('QR kod dosyası bulunamadı');
+                            }
+                            return response.blob();
+                        })
+                        .then(blob => {
+                            downloadBlob(blob, `${currentQRCode}_qr.svg`);
+                        })
+                        .catch(error => {
+                            console.error('Fetch hatası:', error);
+                            fallbackDownload();
+                        });
+                } else {
+                    fallbackDownload();
+                }
+            } catch (error) {
+                console.error('İndirme hatası:', error);
+                fallbackDownload();
+            }
+        }
+
+        function downloadBlob(blob, filename) {
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+            showDownloadNotification();
+        }
+
+        function fallbackDownload() {
+            const modalImage = document.getElementById('qrModalImage');
+            const imgElement = modalImage.querySelector('img');
+
+            if (imgElement && imgElement.src) {
+                const link = document.createElement('a');
+                link.href = imgElement.src;
+                link.download = `${currentQRCode}_qr.svg`;
+                link.target = '_blank';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showDownloadNotification();
+            } else {
+                alert(`QR kod dosyası: ./images/${currentQRCode}_qr.svg\n\nDosyayı manuel olarak indirmek için:\n1. Sağ tık yapın\n2. "Farklı kaydet" seçeneğini seçin\n\nVeya dosyayı bir HTTP sunucusunda çalıştırın.`);
+            }
+        }
+
+        function showDownloadNotification() {
+            const notification = document.getElementById('notification');
+            const originalHTML = notification.innerHTML;
+
+            notification.innerHTML = '<span>⬇️</span> QR kod başarıyla indirildi';
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.innerHTML = originalHTML;
+                }, 300);
+            }, 3000);
+        }
 
         function closeQR() {
             const modal = document.getElementById('qrModal');
             modal.classList.remove('active');
+            currentQRCode = '';
+            currentQRTitle = '';
         }
-
 
         document.getElementById('qrModal').addEventListener('click', function (e) {
             if (e.target === this) {
