@@ -38,17 +38,17 @@
         }
         
         .header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
-    background-size: 40px 40px;
-}
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
 
         .header-content {
             position: relative;
@@ -232,12 +232,12 @@
         }
 
         .currency-title {
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 600;
-            color: #374151;
-            margin-bottom: 10px;
+            color: #111827;
+            margin-bottom: 8px;
             padding-bottom: 6px;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 2px solid #e5e7eb;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             display: flex;
@@ -621,7 +621,7 @@
             }
 
             .copy-btn-small {
-                padding: 4px 6px;
+                padding: 8px 6px;
                 font-size: 8px;
                 min-width: 35px;
             }
@@ -643,6 +643,23 @@
             .notification,
             .qr-modal {
                 display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .detail-row {
+                flex-direction: row !important;
+                align-items: center;
+            }
+
+            .detail-value {
+                flex: 1;
+                margin-right: 8px;
+                margin-bottom: 0;
+            }
+
+            .button-group {
+                flex-shrink: 0;
             }
         }
     </style>
