@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cari Hesap Bilgileri</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: #f8fafc;
+            color: #2d3748;
+            line-height: 1.5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #0d225e 100%);
+            color: white;
+            padding: 32px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .company-logo {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .document-info {
+            background: #f1f5f9;
+            padding: 20px 32px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .document-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .meta-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .meta-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #64748b;
+            min-width: 100px;
+        }
+
+        .meta-value {
+            flex: 1;
+            margin-right: 8px;
+            font-size: 13px;
+            color: #1e293b;
+            font-weight: 500;
+        }
+
+        .meta-copy-btn {
+            background: #1e40af;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            min-width: 60px;
+        }
+
+        .meta-copy-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .meta-copy-btn.copied {
+            background: #059669;
+        }
+
+        .notice-box {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .notice-icon {
+            width: 18px;
+            height: 18px;
+            background: #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .notice-content h4 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 4px;
+        }
+
+        .notice-content p {
+            font-size: 12px;
+            color: #92400e;
+            line-height: 1.5;
+        }
+
+        .content {
+            padding: 24px 32px;
+        }
+
+        .section {
+            margin-bottom: 28px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            letter-spacing: -0.025em;
+        }
+
+        .banks-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .bank-block {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .bank-header {
+            background: #1e40af;
+            color: white;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .currency-section {
+            padding: 16px;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        .currency-section:last-child {
+            border-bottom: none;
+        }
+
+        .currency-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #e2e8f0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .currency-qr-btn {
+            background: #059669;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            min-width: 30px;
+        }
+
+        .currency-qr-btn:hover {
+            background: #047857;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid #f7fafc;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-size: 11px;
+            color: #718096;
+            font-weight: 600;
+            min-width: 70px;
+        }
+
+        .detail-value {
+            flex: 1;
+            margin-right: 8px;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            font-size: 11px;
+            color: #1e293b;
+            background: #f1f5f9;
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+            word-break: break-all;
+            font-weight: 500;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 4px;
+        }
+
+        .copy-btn-small {
+            background: #1e40af;
+            color: white;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-size: 9px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            min-width: 50px;
+        }
+
+        .copy-btn-small:hover {
+            background: #1d4ed8;
+        }
+
+        .copy-btn-small.copied {
+            background: #059669;
+        }
+
+        .qr-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .qr-modal.active {
+            display: flex;
+        }
+
+        .qr-modal-content {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            max-width: 300px;
+            width: 90%;
+        }
+
+        .qr-modal-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+
+        .qr-modal-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+        }
+
+        .qr-modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .qr-modal-close {
+            background: #6b7280;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .qr-modal-close:hover {
+            background: #4b5563;
+        }
+
+        .footer-section {
+            background: #f8fafc;
+            padding: 24px 32px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .contact-block h4 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .contact-icon {
+            width: 16px;
+            height: 16px;
+            color: #6b7280;
+        }
+
+        .contact-text {
+            font-size: 13px;
+            color: #1f2937;
+        }
+
+        .disclaimer {
+            background: #ecfdf5;
+            border: 1px solid #10b981;
+            border-radius: 6px;
+            padding: 14px;
+            margin-top: 20px;
+        }
+
+        .disclaimer p {
+            font-size: 12px;
+            color: #065f46;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .document-footer {
+            text-align: center;
+            padding-top: 16px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 16px;
+        }
+
+        .document-footer p {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #059669;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 20px 16px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .company-logo {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+                margin-bottom: 16px;
+            }
+
+            .document-info {
+                padding: 16px;
+            }
+
+            .content {
+                padding: 16px;
+            }
+
+            .footer-section {
+                padding: 16px;
+            }
+
+            .document-meta {
+                gap: 10px;
+            }
+
+            .meta-item {
+                padding: 6px 10px;
+            }
+
+            .meta-label {
+                font-size: 11px;
+                min-width: 80px;
+            }
+
+            .meta-value {
+                font-size: 12px;
+                margin-right: 6px;
+            }
+
+            .meta-copy-btn {
+                padding: 5px 8px;
+                font-size: 9px;
+                min-width: 50px;
+            }
+
+            .banks-container {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .detail-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+
+            .detail-value {
+                margin-right: 0;
+                margin-bottom: 8px;
+            }
+
+            .button-group {
+                justify-content: center;
+            }
+
+            .currency-section {
+                padding: 12px;
+            }
+
+            .section-title {
+                font-size: 16px;
+            }
+
+            .notice-box {
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+            }
+
+            .header {
+                padding: 16px 12px;
+            }
+
+            .header h1 {
+                font-size: 18px;
+            }
+
+            .company-logo {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .document-info {
+                padding: 12px;
+            }
+
+            .content {
+                padding: 12px;
+            }
+
+            .footer-section {
+                padding: 12px;
+            }
+
+            .banks-container {
+                gap: 12px;
+            }
+
+            .currency-section {
+                padding: 10px;
+            }
+
+            .bank-header {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+
+            .detail-value {
+                font-size: 10px;
+                padding: 5px 8px;
+            }
+
+            .copy-btn-small {
+                padding: 4px 6px;
+                font-size: 8px;
+                min-width: 35px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .copy-btn-small,
+            .currency-qr-btn,
+            .meta-copy-btn,
+            .notification,
+            .qr-modal {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div class="company-logo" style="background-image: url('./images/logo.png'); background-size: contain; background-position: center; background-repeat: no-repeat;"></div>
+                <h1>CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ.</h1>
+                <p class="subtitle">Cari Hesap Bilgileri Formu</p>
+            </div>
+        </div>
+
+        <!-- Company Info Header -->
+        <div class="document-info">
+            <div class="document-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Firma Ünvanı</span>
+                    <span class="meta-value" id="headerCompanyName">CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ.</span>
+                    <button class="meta-copy-btn" onclick="copyToClipboard('headerCompanyName', this)">Kopyala</button>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Adres</span>
+                    <span class="meta-value" id="headerAddress">Yeni Bağlıca Mh. Kızılelma Cd. Ozan City No:32/1 Kapı No:46 Etimesgut / ANKARA</span>
+                    <button class="meta-copy-btn" onclick="copyToClipboard('headerAddress', this)">Kopyala</button>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Vergi Dairesi</span>
+                    <span class="meta-value" id="headerTaxOffice">ETİMESGUT</span>
+                    <button class="meta-copy-btn" onclick="copyToClipboard('headerTaxOffice', this)">Kopyala</button>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Vergi No</span>
+                    <span class="meta-value" id="headerTaxNumber">2111171501</span>
+                    <button class="meta-copy-btn" onclick="copyToClipboard('headerTaxNumber', this)">Kopyala</button>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Telefon</span>
+                    <span class="meta-value" id="headerPhone">+908502410654</span>
+                    <button class="meta-copy-btn" onclick="copyToClipboard('headerPhone', this)">Kopyala</button>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">E-mail</span>
+                    <span class="meta-value" id="headerEmail">info@clbyazilim.com</span>
+                    <button class="meta-copy-btn" onclick="copyToClipboard('headerEmail', this)">Kopyala</button>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">E-mail</span>
+                    <span class="meta-value" id="headerEmail">finans@clbyazilim.com</span>
+                    <button class="meta-copy-btn" onclick="copyToClipboard('headerEmail', this)">Kopyala</button>
+                </div>
+            </div>
+
+            <div class="notice-box">
+                <div class="notice-icon">!</div>
+                <div class="notice-content">
+                    <h4>Önemli Güncelleme Bildirimi</h4>
+                    <p>Bankamızın sistem güncellemesi nedeniyle hesap bilgilerimiz değişmiştir. Lütfen ödemelerinizde
+                        aşağıdaki güncel bilgileri kullanınız.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Banka Hesapları -->
+            <div class="section">
+                <h2 class="section-title">Banka Hesap Detayları</h2>
+                <div class="banks-container">
+
+                    <!-- Enpara Bank A.Ş. -->
+                    <div class="bank-block">
+                        <div class="bank-header">Enpara Bank A.Ş.</div>
+                        <div class="currency-section">
+                            <div class="currency-title">
+                                <span>🇹🇷 Türk Lirası (TL) Hesabı</span>
+                                <button class="currency-qr-btn"
+                                    onclick="showQR('enpara_tl', 'Enpara Bank A.Ş. TL IBAN')">QR ile Gönder</button>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Hesap Sahibi</span>
+                                <div class="detail-value" id="enpara_tl_holder">CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ.</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_holder', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">IBAN</span>
+                                <div class="detail-value" id="enpara_tl_iban">TR93 0015 7000 0000 0130 4955 51</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_iban', this)">Kopyala</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="currency-section">
+                            <div class="currency-title">
+                                <span>🇪🇺 Euro (EUR) Hesabı</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">IBAN</span>
+                                <div class="detail-value" id="enpara_eur_iban">TR72 0015 7000 0000 0130 5130 98</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_eur_iban', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Hesap No</span>
+                                <div class="detail-value" id="enpara_tl_account">130513098</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_account', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Şube Kodu</span>
+                                <div class="detail-value" id="enpara_tl_branch">03663</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_branch', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">SWIFT</span>
+                                <div class="detail-value" id="enpara_eur_swift">ENASTRISXXX</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_eur_swift', this)">Kopyala</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="currency-section">
+                            <div class="currency-title">
+                                <span>🇺🇸 Dolar (USD) Hesabı</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">IBAN</span>
+                                <div class="detail-value" id="enpara_usd_iban">TR14 0015 7000 0000 0130 5130 75</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small" onclick="copyToClipboard('enpara_usd_iban', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Hesap No</span>
+                                <div class="detail-value" id="enpara_tl_account">130513075</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_account', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Şube Kodu</span>
+                                <div class="detail-value" id="enpara_tl_branch">03663</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_branch', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">SWIFT</span>
+                                <div class="detail-value" id="enpara_usd_swift">ENASTRISXXX</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small" onclick="copyToClipboard('enpara_usd_swift', this)">Kopyala</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VAKIFBANK -->
+                    <div class="bank-block">
+                        <div class="bank-header">VAKIFBANK</div>
+                        <div class="currency-section">
+                            <div class="currency-title">
+                                <span>🇹🇷 Türk Lirası (TL) Hesabı</span>
+                                <button class="currency-qr-btn"
+                                    onclick="showQR('vakifbank_tl', 'VAKIFBANK TL IBAN')">QR ile Gönder</button>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Hesap Sahibi</span>
+                                <div class="detail-value" id="vakifbank_tl_holder">CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ.</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('vakifbank_tl_holder', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">IBAN</span>
+                                <div class="detail-value" id="vakifbank_tl_iban">TR26 0001 5001 5800 7323 0283 45</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('vakifbank_tl_iban', this)">Kopyala</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="currency-section">
+                            <div class="currency-title">
+                                <span>🇪🇺 Euro (EUR) Hesabı</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">IBAN</span>
+                                <div class="detail-value" id="vakifbank_eur_iban">TR04 0001 5001 5804 8023 4494 43</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('vakifbank_eur_iban', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Hesap No</span>
+                                <div class="detail-value" id="enpara_tl_account">00158048023449443</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_account', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Şube Kodu</span>
+                                <div class="detail-value" id="enpara_tl_branch">S01071 - SERDİVAN SAKARYA</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_branch', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">SWIFT</span>
+                                <div class="detail-value" id="vakifbank_eur_swift">TVBATR2AXXX</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('vakifbank_eur_swift', this)">Kopyala</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="currency-section">
+                            <div class="currency-title">
+                                <span>🇺🇸 Dolar (USD) Hesabı</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">IBAN</span>
+                                <div class="detail-value" id="vakifbank_usd_iban">TR31 0001 5001 5804 8023 4494 42</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small" onclick="copyToClipboard('vakifbank_usd_iban', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Hesap No</span>
+                                <div class="detail-value" id="enpara_tl_account">00158048023449442</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_account', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Şube Kodu</span>
+                                <div class="detail-value" id="enpara_tl_branch">S01071 - SERDİVAN SAKARYA</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_branch', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">SWIFT</span>
+                                <div class="detail-value" id="vakifbank_usd_swift">TVBATR2AXXX</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small" onclick="copyToClipboard('vakifbank_usd_swift', this)">Kopyala</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QNB FİNANSBANK -->
+                    <div class="bank-block">
+                        <div class="bank-header">QNB FİNANSBANK</div>
+                        <div class="currency-section">
+                            <div class="currency-title">
+                                <span>🇹🇷 Türk Lirası (TL) Hesabı</span>
+                                <button class="currency-qr-btn" onclick="showQR('qnb_tl', 'QNB FİNANSBANK TL IBAN')">QR ile Gönder</button>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Hesap Sahibi</span>
+                                <div class="detail-value" id="qnb_tl_holder">CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ.</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('qnb_tl_holder', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">IBAN</span>
+                                <div class="detail-value" id="qnb_tl_iban">TR87 0011 1000 0000 0113 1943 53</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('qnb_tl_iban', this)">Kopyala</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="currency-section">
+                            <div class="currency-title">
+                                <span>🇪🇺 Euro (EUR) Hesabı</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">IBAN</span>
+                                <div class="detail-value" id="qnb_eur_iban">TR71 0011 1000 0000 0130 5007 99</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('qnb_eur_iban', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Hesap No</span>
+                                <div class="detail-value" id="enpara_tl_account">130500799</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_account', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Şube Kodu</span>
+                                <div class="detail-value" id="enpara_tl_branch">00541-SERDİVAN</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_branch', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">SWIFT</span>
+                                <div class="detail-value" id="qnb_eur_swift">FNNBTRISOPS</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('qnb_eur_swift', this)">Kopyala</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="currency-section">
+                            <div class="currency-title">
+                                <span>🇺🇸 Dolar (USD) Hesabı</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">IBAN</span>
+                                <div class="detail-value" id="qnb_usd_iban">TR78 0011 1000 0000 0130 5006 73</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small" onclick="copyToClipboard('qnb_usd_iban', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Hesap No</span>
+                                <div class="detail-value" id="enpara_tl_account">130500673</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_account', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Şube Kodu</span>
+                                <div class="detail-value" id="enpara_tl_branch">00541-SERDİVAN </div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_branch', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">SWIFT</span>
+                                <div class="detail-value" id="qnb_usd_swift">FNNBTRISOPS</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small" onclick="copyToClipboard('qnb_usd_swift', this)">Kopyala</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- İŞ BANKASI -->
+                    <div class="bank-block">
+                        <div class="bank-header">İŞ BANKASI</div>
+                        <div class="currency-section">
+                            <div class="currency-title">
+                                <span>🇹🇷 Türk Lirası (TL) Hesabı</span>
+                                <button class="currency-qr-btn"
+                                    onclick="showQR('isbank_tl', 'İŞ BANKASI TL IBAN')">QR ile Gönder</button>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Hesap Sahibi</span>
+                                <div class="detail-value" id="isbank_tl_holder">CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ.</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('isbank_tl_holder', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">IBAN</span>
+                                <div class="detail-value" id="isbank_tl_iban">TR98 0006 4000 0012 0030 3492 05</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('isbank_tl_iban', this)">Kopyala</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="currency-section">
+                            <div class="currency-title">
+                                <span>🇪🇺 Euro (EUR) Hesabı</span>
+                                <button class="currency-qr-btn"
+                                    onclick="showQR('isbank_eur', 'İŞ BANKASI EUR IBAN')">QR ile Gönder</button>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">IBAN</span>
+                                <div class="detail-value" id="isbank_eur_iban">TR31 0006 4000 0022 0030 1349 69</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('isbank_eur_iban', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Hesap No</span>
+                                <div class="detail-value" id="enpara_tl_account">20030134969</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_account', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Şube Kodu</span>
+                                <div class="detail-value" id="enpara_tl_branch">2003-SERDİVAN</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_branch', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">SWIFT</span>
+                                <div class="detail-value" id="isbank_eur_swift">ISBKTRIS</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('isbank_eur_swift', this)">Kopyala</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="currency-section">
+                            <div class="currency-title">
+                                <span>🇺🇸 Dolar (USD) Hesabı</span>
+                                <button class="currency-qr-btn" onclick="showQR('isbank_usd', 'İŞ BANKASI USD IBAN')">QR ile Gönder</button>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">IBAN</span>
+                                <div class="detail-value" id="isbank_usd_iban">TR21 0006 4000 0022 0030 1349 55</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small" onclick="copyToClipboard('isbank_usd_iban', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Hesap No</span>
+                                <div class="detail-value" id="enpara_tl_account">20030134955</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_account', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Şube Kodu</span>
+                                <div class="detail-value" id="enpara_tl_branch">2003-SERDİVAN</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small"
+                                        onclick="copyToClipboard('enpara_tl_branch', this)">Kopyala</button>
+                                </div>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">SWIFT</span>
+                                <div class="detail-value" id="isbank_usd_swift">ISBKTRIS</div>
+                                <div class="button-group">
+                                    <button class="copy-btn-small" onclick="copyToClipboard('isbank_usd_swift', this)">Kopyala</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-section">
+            <div class="contact-grid">
+                <div class="contact-block">
+                    <h4>İletişim Bilgileri</h4>
+                    <div class="contact-item">
+                        <span class="contact-icon">📠</span>
+                        <span class="contact-text"> <a href="https://wa.me/908502410654"> +90 850 241 06 54</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">✉️</span>
+                        <a href="mailto:destek@clbyazilim.com" class="contact-text" style="color: #1f2937; text-decoration: none;">destek@clbyazilim.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">✉️</span>
+                        <span class="contact-text">clbyazilim@hs01.kep.tr</span>
+                    </div>
+                </div>
+
+                <div class="contact-block">
+                    <h4>Adres Bilgileri</h4>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <span class="contact-text">Yeni Bağlıca Mh. Kızılelma Cd. Ozan City No:32/1 Kapı No:46</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🏢</span>
+                        <span class="contact-text">Etimesgut / ANKARA</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🌐</span>
+                        <a href="https://www.clbyazilim.com" target="_blank" class="contact-text" style="color: #1f2937; text-decoration: none;">www.clbyazilim.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disclaimer">
+                <p><strong>Gizlilik ve Güvenlik:</strong> Bu belge ticari amaçlı olarak hazırlanmış olup, içeriğindeki
+                    bilgiler gizlidir. Yetkisiz kişilerle paylaşılmamalıdır. Ödeme işlemlerinde doğrulama için lütfen
+                    telefonla iletişime geçiniz.</p>
+            </div>
+            <div class="document-footer">
+                <p>© <span id="currentYear">2025</span> CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ. Tüm hakları saklıdır. | Son güncelleme: <span id="footerDate"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Modal -->
+    <div class="qr-modal" id="qrModal">
+        <div class="qr-modal-content">
+            <div class="qr-modal-title" id="qrModalTitle">QR Kod</div>
+            <div class="qr-modal-image" id="qrModalImage">
+                <div style="color: #6b7280; font-size: 14px;">QR kod yükleniyor...</div>
+            </div>
+            <button class="qr-modal-close" onclick="closeQR()">Kapat</button>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">
+        <span>✅</span> Panoya başarıyla kopyalandı
+    </div>
+
+    <script>
+        const today = new Date();
+        const currentYear = today.getFullYear();
+        const formattedDate = today.toLocaleDateString('tr-TR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+
+        document.getElementById('footerDate').textContent = formattedDate;
+        document.getElementById('currentYear').textContent = currentYear;
+
+
+        function showQR(qrCode, title) {
+            const modal = document.getElementById('qrModal');
+            const modalTitle = document.getElementById('qrModalTitle');
+            const modalImage = document.getElementById('qrModalImage');
+
+            modalTitle.textContent = title;
+    
+            modalImage.innerHTML = '<div style="color: #6b7280; font-size: 14px;">QR kod kontrol ediliyor...</div>';
+            modal.classList.add('active');
+
+    
+            const img = new Image();
+
+            img.onload = function () {
+        
+                modalImage.innerHTML = `<img src="./images/${qrCode}_qr.svg" alt="${title} QR Kod" style="width: 100%; height: 100%; object-fit: contain;">`;
+            };
+
+            img.onerror = function () {
+        
+                modalImage.innerHTML = `
+            <div style="color: #ef4444; font-size: 14px; text-align: center; padding: 20px; line-height: 1.5;">
+                <div style="font-size: 24px; margin-bottom: 10px;">⚠️</div>
+                <div><strong>QR kod bulunamadı</strong></div>
+                <div style="font-size: 12px; margin-top: 8px; color: #6b7280;">
+                    Dosya: ${qrCode}_qr.svg
+                </div>
+            </div>
+        `;
+            };
+
+    
+            img.src = `./images/${qrCode}_qr.svg`;
+        }
+
+
+        function closeQR() {
+            const modal = document.getElementById('qrModal');
+            modal.classList.remove('active');
+        }
+
+
+        document.getElementById('qrModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeQR();
+            }
+        });
+
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeQR();
+            }
+        });
+
+
+        function copyToClipboard(elementId, button) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent.trim();
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showNotification();
+                    animateButton(button);
+                }).catch(err => {
+                    console.error('Kopyalama hatası:', err);
+                    fallbackCopy(text, button);
+                });
+            } else {
+                fallbackCopy(text, button);
+            }
+        }
+
+
+        function fallbackCopy(text, button) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                document.execCommand('copy');
+                showNotification();
+                animateButton(button);
+            } catch (err) {
+                console.error('Fallback kopyalama hatası:', err);
+                alert('Kopyalama işlemi başarısız. Lütfen metni manuel olarak seçip kopyalayın.');
+            }
+
+            document.body.removeChild(textArea);
+        }
+
+
+        function showNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+
+        function animateButton(button) {
+            const originalHTML = button.innerHTML;
+            button.innerHTML = '<span>✅</span> Kopyalandı';
+            button.classList.add('copied');
+
+            setTimeout(() => {
+                button.innerHTML = originalHTML;
+                button.classList.remove('copied');
+            }, 2000);
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const rows = document.querySelectorAll('.detail-row');
+            rows.forEach((row, index) => {
+                row.style.opacity = '0';
+                row.style.transform = 'translateX(-10px)';
+
+                setTimeout(() => {
+                    row.style.transition = 'all 0.3s ease';
+                    row.style.opacity = '1';
+                    row.style.transform = 'translateX(0)';
+                }, index * 50);
+            });
+        });
+    </script>
+</body>
+
+</html>
