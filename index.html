@@ -1316,7 +1316,7 @@
 
             img.onload = function () {
 
-                modalImage.innerHTML = `<img src="./images/${qrCode}_qr.svg" alt="${title} QR Kod" style="width: 100%; height: 100%; object-fit: contain;">`;
+                modalImage.innerHTML = `<img src="./images/${qrCode}_qr.png" alt="${title} QR Kod" style="width: 100%; height: 100%; object-fit: contain;">`;
             };
 
             img.onerror = function () {
@@ -1326,14 +1326,14 @@
                 <div style="font-size: 24px; margin-bottom: 10px;">⚠️</div>
                 <div><strong>QR kod bulunamadı</strong></div>
                 <div style="font-size: 12px; margin-top: 8px; color: #6b7280;">
-                    Dosya: ${qrCode}_qr.svg
+                    Dosya: ${qrCode}_qr.png
                 </div>
             </div>
         `;
             };
 
 
-            img.src = `./images/${qrCode}_qr.svg`;
+            img.src = `./images/${qrCode}_qr.png`;
         }
 
         function downloadQR() {
@@ -1344,7 +1344,7 @@
 
             try {
                 if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
-                    fetch(`./images/${currentQRCode}_qr.svg`)
+                    fetch(`./images/${currentQRCode}_qr.png`)
                         .then(response => {
                             if (!response.ok) {
                                 throw new Error('QR kod dosyası bulunamadı');
@@ -1352,7 +1352,7 @@
                             return response.blob();
                         })
                         .then(blob => {
-                            downloadBlob(blob, `${currentQRCode}_qr.svg`);
+                            downloadBlob(blob, `${currentQRCode}_qr.png`);
                         })
                         .catch(error => {
                             console.error('Fetch hatası:', error);
@@ -1386,14 +1386,14 @@
             if (imgElement && imgElement.src) {
                 const link = document.createElement('a');
                 link.href = imgElement.src;
-                link.download = `${currentQRCode}_qr.svg`;
+                link.download = `${currentQRCode}_qr.png`;
                 link.target = '_blank';
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
                 showDownloadNotification();
             } else {
-                alert(`QR kod dosyası: ./images/${currentQRCode}_qr.svg\n\nDosyayı manuel olarak indirmek için:\n1. Sağ tık yapın\n2. "Farklı kaydet" seçeneğini seçin\n\nVeya dosyayı bir HTTP sunucusunda çalıştırın.`);
+                alert(`QR kod dosyası: ./images/${currentQRCode}_qr.png\n\nDosyayı manuel olarak indirmek için:\n1. Sağ tık yapın\n2. "Farklı kaydet" seçeneğini seçin\n\nVeya dosyayı bir HTTP sunucusunda çalıştırın.`);
             }
         }
 
