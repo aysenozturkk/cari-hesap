@@ -100,7 +100,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 12px;
+            padding: 4px 12px;
             background: white;
             border-radius: 4px;
             border: 1px solid #e2e8f0;
@@ -116,7 +116,7 @@
         .meta-value {
             flex: 1;
             margin-right: 8px;
-            font-size: 13px;
+            font-size: 12px;
             color: #1e293b;
             font-weight: 500;
         }
@@ -712,6 +712,7 @@
                 flex-shrink: 0;
             }
         }
+        .no-qr { color: #ef4444; font-weight: 600; font-size: 10px; }
     </style>
 </head>
 
@@ -767,6 +768,21 @@
                     <span class="meta-value" id="headerEmail2">finans@clbyazilim.com</span>
                     <button class="meta-copy-btn" onclick="copyToClipboard('headerEmail2', this)">Kopyala</button>
                 </div>
+                <div class="meta-item">
+                    <span class="meta-label">E-mail</span>
+                    <span class="meta-value" id="headerSupportEmail">destek@clbyazilim.com</span>
+                    <button class="meta-copy-btn" onclick="copyToClipboard('headerSupportEmail', this)">Kopyala</button>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">KEP</span>
+                    <span class="meta-value" id="headerKep">clbyazilim@hs01.kep.tr</span>
+                    <button class="meta-copy-btn" onclick="copyToClipboard('headerKep', this)">Kopyala</button>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Web</span>
+                    <span class="meta-value" id="headerWeb">www.clbyazilim.com</span>
+                    <button class="meta-copy-btn" onclick="copyToClipboard('headerWeb', this)">Kopyala</button>
+                </div>
             </div>
 
             <div class="notice-box">
@@ -815,6 +831,7 @@
                         <div class="currency-section">
                             <div class="currency-title">
                                 <span>🇪🇺 Euro (EUR) Hesabı</span>
+                                <span class="no-qr">QR Kod Yok</span>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">IBAN</span>
@@ -852,6 +869,7 @@
                         <div class="currency-section">
                             <div class="currency-title">
                                 <span>🇺🇸 Dolar (USD) Hesabı</span>
+                                <span class="no-qr">QR Kod Yok</span>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">IBAN</span>
@@ -918,6 +936,7 @@
                         <div class="currency-section">
                             <div class="currency-title">
                                 <span>🇪🇺 Euro (EUR) Hesabı</span>
+                                <span class="no-qr">QR Kod Yok</span>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">IBAN</span>
@@ -955,6 +974,7 @@
                         <div class="currency-section">
                             <div class="currency-title">
                                 <span>🇺🇸 Dolar (USD) Hesabı</span>
+                                <span class="no-qr">QR Kod Yok</span>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">IBAN</span>
@@ -1021,6 +1041,7 @@
                         <div class="currency-section">
                             <div class="currency-title">
                                 <span>🇪🇺 Euro (EUR) Hesabı</span>
+                                <span class="no-qr">QR Kod Yok</span>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">IBAN</span>
@@ -1058,6 +1079,7 @@
                         <div class="currency-section">
                             <div class="currency-title">
                                 <span>🇺🇸 Dolar (USD) Hesabı</span>
+                                <span class="no-qr">QR Kod Yok</span>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">IBAN</span>
@@ -1207,42 +1229,6 @@
 
         <!-- Footer -->
         <div class="footer-section">
-            <div class="contact-grid">
-                <div class="contact-block">
-                    <h4>İletişim Bilgileri</h4>
-                    <div class="contact-item">
-                        <span class="contact-icon">📠</span>
-                        <span class="contact-text"> <a href="https://wa.me/908502410654"> +90 850 241 06 54</a></span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">✉️</span>
-                        <a href="mailto:destek@clbyazilim.com" class="contact-text"
-                            style="color: #1f2937; text-decoration: none;">destek@clbyazilim.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">✉️</span>
-                        <span class="contact-text">clbyazilim@hs01.kep.tr</span>
-                    </div>
-                </div>
-
-                <div class="contact-block">
-                    <h4>Adres Bilgileri</h4>
-                    <div class="contact-item">
-                        <span class="contact-icon">📍</span>
-                        <span class="contact-text">Yeni Bağlıca Mh. Kızılelma Cd. Ozan City No:32/1 Kapı No:46</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">🏢</span>
-                        <span class="contact-text">Etimesgut / ANKARA</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">🌐</span>
-                        <a href="https://www.clbyazilim.com" target="_blank" class="contact-text"
-                            style="color: #1f2937; text-decoration: none;">www.clbyazilim.com</a>
-                    </div>
-                </div>
-            </div>
-
             <div class="disclaimer">
                 <p><strong>Gizlilik ve Güvenlik:</strong> Bu belge ticari amaçlı olarak hazırlanmış olup, içeriğindeki
                     bilgiler gizlidir. Yetkisiz kişilerle paylaşılmamalıdır. Ödeme işlemlerinde doğrulama için lütfen
