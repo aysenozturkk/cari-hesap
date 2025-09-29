@@ -98,9 +98,22 @@
 
         @media (min-width: 769px) {
             .document-meta {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
+                flex-direction: row;
+                gap: 20px;
             }
+            
+            .meta-column {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+        .meta-column {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .meta-item {
@@ -743,66 +756,70 @@
         <!-- Company Info Header -->
         <div class="document-info">
             <div class="document-meta">
-                <div class="meta-item">
-                    <span class="meta-label">Firma Ünvanı</span>
-                    <span class="meta-value" id="headerCompanyName">CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ.</span>
-                    <button class="meta-copy-btn" onclick="copyToClipboard('headerCompanyName', this)">Kopyala</button>
+                <div class="meta-column">
+                    <div class="meta-item">
+                        <span class="meta-label">Firma Ünvanı</span>
+                        <span class="meta-value" id="headerCompanyName">CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ.</span>
+                        <button class="meta-copy-btn" onclick="copyToClipboard('headerCompanyName', this)">Kopyala</button>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Merkez Adres</span>
+                        <span class="meta-value" id="headerAddress">Yeni Bağlıca Mh. Kızılelma Cd. Ozan City No:32/1 Kapı No:46 Etimesgut / ANKARA</span>
+                        <button class="meta-copy-btn" onclick="copyToClipboard('headerAddress', this)">Kopyala</button>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Ar-Ge Ofisi (Kargo Adresi)</span>
+                        <span class="meta-value" id="headerArgeAddress"> Esentepe Mh, Akademiyolu Sk, Sakarya Teknokent A Blok No:B04 Serdivan, Sakarya, 54050</span>
+                        <button class="meta-copy-btn" onclick="copyToClipboard('headerArgeAddress', this)">Kopyala</button>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Vergi Dairesi</span>
+                        <span class="meta-value" id="headerTaxOffice">ETİMESGUT</span>
+                        <button class="meta-copy-btn" onclick="copyToClipboard('headerTaxOffice', this)">Kopyala</button>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Vergi No</span>
+                        <span class="meta-value" id="headerTaxNumber">2111171501</span>
+                        <button class="meta-copy-btn" onclick="copyToClipboard('headerTaxNumber', this)">Kopyala</button>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Telefon</span>
+                        <span class="meta-value" id="headerPhone">+908502410654</span>
+                        <button class="meta-copy-btn" onclick="copyToClipboard('headerPhone', this)">Kopyala</button>
+                    </div>
                 </div>
-                <div class="meta-item">
-                    <span class="meta-label">E-mail</span>
-                    <span class="meta-value" id="headerEmail2">finans@clbyazilim.com</span>
-                    <button class="meta-copy-btn" onclick="copyToClipboard('headerEmail2', this)">Kopyala</button>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Merkez Adres</span>
-                    <span class="meta-value" id="headerAddress">Yeni Bağlıca Mh. Kızılelma Cd. Ozan City No:32/1 Kapı
-                        No:46 Etimesgut / ANKARA</span>
-                    <button class="meta-copy-btn" onclick="copyToClipboard('headerAddress', this)">Kopyala</button>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">E-mail</span>
-                    <span class="meta-value" id="headerEmail">info@clbyazilim.com</span>
-                    <button class="meta-copy-btn" onclick="copyToClipboard('headerEmail', this)">Kopyala</button>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Ar-Ge Ofisi (Kargo Adresi)</span>
-                    <span class="meta-value" id="headerAddress"> Esentepe Mh, Akademiyolu Sk, Sakarya Teknokent A Blok No:B04 Serdivan, Sakarya, 54050</span>
-                    <button class="meta-copy-btn" onclick="copyToClipboard('headerAddress', this)">Kopyala</button>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">E-mail</span>
-                    <span class="meta-value" id="headerSupportEmail">destek@clbyazilim.com</span>
-                    <button class="meta-copy-btn" onclick="copyToClipboard('headerSupportEmail', this)">Kopyala</button>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Vergi Dairesi</span>
-                    <span class="meta-value" id="headerTaxOffice">ETİMESGUT</span>
-                    <button class="meta-copy-btn" onclick="copyToClipboard('headerTaxOffice', this)">Kopyala</button>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">KEP</span>
-                    <span class="meta-value" id="headerKep">clbyazilim@hs01.kep.tr</span>
-                    <button class="meta-copy-btn" onclick="copyToClipboard('headerKep', this)">Kopyala</button>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Vergi No</span>
-                    <span class="meta-value" id="headerTaxNumber">2111171501</span>
-                    <button class="meta-copy-btn" onclick="copyToClipboard('headerTaxNumber', this)">Kopyala</button>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Web</span>
-                    <span class="meta-value" id="headerWeb"> <a href="https://clbyazilim.com/" target="_blank">www.clbyazilim.com</a></span>
-                    <button class="meta-copy-btn" onclick="copyToClipboard('headerWeb', this)">Kopyala</button>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Telefon</span>
-                    <span class="meta-value" id="headerPhone">+908502410654</span>
-                    <button class="meta-copy-btn" onclick="copyToClipboard('headerPhone', this)">Kopyala</button>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Yardım Merkezi</span>
-                    <span class="meta-value" id="headerWeb"> <a href="https://clbyazilim.atlassian.net/servicedesk/" target="_blank">clbyazilim.atlassian.net/servicedesk</a></span>
-                    <button class="meta-copy-btn" onclick="copyToClipboard('headerWeb', this)">Kopyala</button>
+                
+                <div class="meta-column">
+                    <div class="meta-item">
+                        <span class="meta-label">E-mail</span>
+                        <span class="meta-value" id="headerEmail2">finans@clbyazilim.com</span>
+                        <button class="meta-copy-btn" onclick="copyToClipboard('headerEmail2', this)">Kopyala</button>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">E-mail</span>
+                        <span class="meta-value" id="headerEmail">info@clbyazilim.com</span>
+                        <button class="meta-copy-btn" onclick="copyToClipboard('headerEmail', this)">Kopyala</button>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">E-mail</span>
+                        <span class="meta-value" id="headerSupportEmail">destek@clbyazilim.com</span>
+                        <button class="meta-copy-btn" onclick="copyToClipboard('headerSupportEmail', this)">Kopyala</button>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">KEP</span>
+                        <span class="meta-value" id="headerKep">clbyazilim@hs01.kep.tr</span>
+                        <button class="meta-copy-btn" onclick="copyToClipboard('headerKep', this)">Kopyala</button>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Web</span>
+                        <span class="meta-value" id="headerWeb"> <a href="https://clbyazilim.com/" target="_blank">www.clbyazilim.com</a></span>
+                        <button class="meta-copy-btn" onclick="copyToClipboard('headerWeb', this)">Kopyala</button>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Yardım Merkezi</span>
+                        <span class="meta-value" id="headerYardimMerkezi"> <a href="https://clbyazilim.atlassian.net/servicedesk/" target="_blank">clbyazilim.atlassian.net/servicedesk</a></span>
+                        <button class="meta-copy-btn" onclick="copyToClipboard('headerYardimMerkezi', this)">Kopyala</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -812,14 +829,14 @@
             <div class="section">
                 <h2 class="section-title">Banka Hesap Detayları</h2>
                 
-        <div class="notice-box">
-            <div class="notice-icon">!</div>
-            <div class="notice-content">
-                <h4>Önemli Güncelleme Bildirimi</h4>
-                <p> Enpara Şubesi’nin QNB Finansbank bünyesinden ayrılıp Enpara Bank A.Ş. unvanıyla faaliyet göstermeye başlaması nedeniyle firmamızın ENPARA hesap bilgileri değişmiştir. Lütfen muhasebe kayıtlarınızı güncelleyiniz. 
-                Güncel IBAN ve hesap bilgilerimiz aşağıda bilgilerinize sunulmuştur.</p>
-            </div>
-        </div>
+                <div class="notice-box">
+                    <div class="notice-icon">!</div>
+                    <div class="notice-content">
+                        <h4>Önemli Güncelleme Bildirimi</h4>
+                        <p> Enpara Şubesi’nin QNB Finansbank bünyesinden ayrılıp Enpara Bank A.Ş. unvanıyla faaliyet göstermeye başlaması nedeniyle firmamızın ENPARA hesap bilgileri değişmiştir. Lütfen muhasebe kayıtlarınızı güncelleyiniz. 
+                        Güncel IBAN ve hesap bilgilerimiz aşağıda bilgilerinize sunulmuştur.</p>
+                    </div>
+                </div>
                 <div class="banks-container">
 
                     <!-- Enpara Bank A.Ş. -->
@@ -864,18 +881,18 @@
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Hesap No</span>
-                                <div class="detail-value" id="enpara_tl_account">130513098</div>
+                                <div class="detail-value" id="enpara_eur_account">130513098</div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
-                                        onclick="copyToClipboard('enpara_tl_account', this)">Kopyala</button>
+                                        onclick="copyToClipboard('enpara_eur_account', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Şube Kodu</span>
-                                <div class="detail-value" id="enpara_tl_branch">03663</div>
+                                <div class="detail-value" id="enpara_eur_branch">03663</div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
-                                        onclick="copyToClipboard('enpara_tl_branch', this)">Kopyala</button>
+                                        onclick="copyToClipboard('enpara_eur_branch', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
@@ -902,18 +919,18 @@
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Hesap No</span>
-                                <div class="detail-value" id="enpara_tl_account">130513075</div>
+                                <div class="detail-value" id="enpara_usd_account">130513075</div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
-                                        onclick="copyToClipboard('enpara_tl_account', this)">Kopyala</button>
+                                        onclick="copyToClipboard('enpara_usd_account', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Şube Kodu</span>
-                                <div class="detail-value" id="enpara_tl_branch">03663</div>
+                                <div class="detail-value" id="enpara_usd_branch">03663</div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
-                                        onclick="copyToClipboard('enpara_tl_branch', this)">Kopyala</button>
+                                        onclick="copyToClipboard('enpara_usd_branch', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
@@ -969,18 +986,18 @@
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Hesap No</span>
-                                <div class="detail-value" id="enpara_tl_account">00158048023449443</div>
+                                <div class="detail-value" id="vakifbank_eur_account">00158048023449443</div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
-                                        onclick="copyToClipboard('enpara_tl_account', this)">Kopyala</button>
+                                        onclick="copyToClipboard('vakifbank_eur_account', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Şube Kodu</span>
-                                <div class="detail-value" id="enpara_tl_branch">S01071 - SERDİVAN SAKARYA</div>
+                                <div class="detail-value" id="vakifbank_eur_branch">S01071 - SERDİVAN SAKARYA</div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
-                                        onclick="copyToClipboard('enpara_tl_branch', this)">Kopyala</button>
+                                        onclick="copyToClipboard('vakifbank_eur_branch', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
@@ -1007,18 +1024,18 @@
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Hesap No</span>
-                                <div class="detail-value" id="enpara_tl_account">00158048023449442</div>
+                                <div class="detail-value" id="vakifbank_usd_account">00158048023449442</div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
-                                        onclick="copyToClipboard('enpara_tl_account', this)">Kopyala</button>
+                                        onclick="copyToClipboard('vakifbank_usd_account', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Şube Kodu</span>
-                                <div class="detail-value" id="enpara_tl_branch">S01071 - SERDİVAN SAKARYA</div>
+                                <div class="detail-value" id="vakifbank_usd_branch">S01071 - SERDİVAN SAKARYA</div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
-                                        onclick="copyToClipboard('enpara_tl_branch', this)">Kopyala</button>
+                                        onclick="copyToClipboard('vakifbank_usd_branch', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
@@ -1074,18 +1091,18 @@
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Hesap No</span>
-                                <div class="detail-value" id="enpara_tl_account">130500799</div>
+                                <div class="detail-value" id="qnb_eur_account">130500799</div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
-                                        onclick="copyToClipboard('enpara_tl_account', this)">Kopyala</button>
+                                        onclick="copyToClipboard('qnb_eur_account', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Şube Kodu</span>
-                                <div class="detail-value" id="enpara_tl_branch">00541-SERDİVAN</div>
+                                <div class="detail-value" id="qnb_eur_branch">00541-SERDİVAN</div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
-                                        onclick="copyToClipboard('enpara_tl_branch', this)">Kopyala</button>
+                                        onclick="copyToClipboard('qnb_eur_branch', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
@@ -1112,18 +1129,18 @@
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Hesap No</span>
-                                <div class="detail-value" id="enpara_tl_account">130500673</div>
+                                <div class="detail-value" id="qnb_usd_account">130500673</div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
-                                        onclick="copyToClipboard('enpara_tl_account', this)">Kopyala</button>
+                                        onclick="copyToClipboard('qnb_usd_account', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Şube Kodu</span>
-                                <div class="detail-value" id="enpara_tl_branch">00541-SERDİVAN </div>
+                                <div class="detail-value" id="qnb_usd_branch">00541-SERDİVAN </div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
-                                        onclick="copyToClipboard('enpara_tl_branch', this)">Kopyala</button>
+                                        onclick="copyToClipboard('qnb_usd_branch', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
@@ -1180,18 +1197,18 @@
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Hesap No</span>
-                                <div class="detail-value" id="enpara_tl_account">20030134969</div>
+                                <div class="detail-value" id="isbank_eur_account">20030134969</div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
-                                        onclick="copyToClipboard('enpara_tl_account', this)">Kopyala</button>
+                                        onclick="copyToClipboard('isbank_eur_account', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Şube Kodu</span>
-                                <div class="detail-value" id="enpara_tl_branch">2003-SERDİVAN</div>
+                                <div class="detail-value" id="isbank_eur_branch">2003-SERDİVAN</div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
-                                        onclick="copyToClipboard('enpara_tl_branch', this)">Kopyala</button>
+                                        onclick="copyToClipboard('isbank_eur_branch', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
@@ -1219,18 +1236,18 @@
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Hesap No</span>
-                                <div class="detail-value" id="enpara_tl_account">20030134955</div>
+                                <div class="detail-value" id="isbank_usd_account">20030134955</div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
-                                        onclick="copyToClipboard('enpara_tl_account', this)">Kopyala</button>
+                                        onclick="copyToClipboard('isbank_usd_account', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">Şube Kodu</span>
-                                <div class="detail-value" id="enpara_tl_branch">2003-SERDİVAN</div>
+                                <div class="detail-value" id="isbank_usd_branch">2003-SERDİVAN</div>
                                 <div class="button-group">
                                     <button class="copy-btn-small"
-                                        onclick="copyToClipboard('enpara_tl_branch', this)">Kopyala</button>
+                                        onclick="copyToClipboard('isbank_usd_branch', this)">Kopyala</button>
                                 </div>
                             </div>
                             <div class="detail-row">
