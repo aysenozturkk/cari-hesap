@@ -96,6 +96,13 @@
             margin-bottom: 16px;
         }
 
+        @media (min-width: 769px) {
+            .document-meta {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
         .meta-item {
             display: flex;
             justify-content: space-between;
@@ -110,7 +117,9 @@
             font-size: 12px;
             font-weight: 600;
             color: #64748b;
-            min-width: 100px;
+            min-width: 90px;
+            word-break: break-word;
+            max-width: 20%;
         }
 
         .meta-value {
@@ -125,7 +134,7 @@
             background: #1e40af;
             color: white;
             border: none;
-            padding: 6px 10px;
+            padding: 4px 10px;
             border-radius: 4px;
             font-size: 10px;
             font-weight: 600;
@@ -150,6 +159,7 @@
             display: flex;
             align-items: flex-start;
             gap: 10px;
+            margin-bottom: 10px;
         }
 
         .notice-icon {
@@ -169,7 +179,7 @@
 
         .notice-content h4 {
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             color: #92400e;
             margin-bottom: 4px;
         }
@@ -178,6 +188,7 @@
             font-size: 12px;
             color: #92400e;
             line-height: 1.5;
+            font-weight: 700;
         }
 
         .content {
@@ -712,7 +723,7 @@
                 flex-shrink: 0;
             }
         }
-        .no-qr { color: #ef4444; font-weight: 600; font-size: 10px; }
+        .no-qr { color: #ef4444; font-weight: 700; font-size: 10px; }
     </style>
 </head>
 
@@ -725,7 +736,7 @@
                     style="background-image: url('./images/logo.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
                 </div>
                 <h1>CLB YAZILIM DANIŞMANLIK TİC. LTD. ŞTİ.</h1>
-                <p class="subtitle">Cari Hesap Bilgileri Formu</p>
+                <p class="subtitle">Cari Hesap Bilgileri</p>
             </div>
         </div>
 
@@ -738,25 +749,15 @@
                     <button class="meta-copy-btn" onclick="copyToClipboard('headerCompanyName', this)">Kopyala</button>
                 </div>
                 <div class="meta-item">
-                    <span class="meta-label">Adres</span>
+                    <span class="meta-label">E-mail</span>
+                    <span class="meta-value" id="headerEmail2">finans@clbyazilim.com</span>
+                    <button class="meta-copy-btn" onclick="copyToClipboard('headerEmail2', this)">Kopyala</button>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Merkez Adres</span>
                     <span class="meta-value" id="headerAddress">Yeni Bağlıca Mh. Kızılelma Cd. Ozan City No:32/1 Kapı
                         No:46 Etimesgut / ANKARA</span>
                     <button class="meta-copy-btn" onclick="copyToClipboard('headerAddress', this)">Kopyala</button>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Vergi Dairesi</span>
-                    <span class="meta-value" id="headerTaxOffice">ETİMESGUT</span>
-                    <button class="meta-copy-btn" onclick="copyToClipboard('headerTaxOffice', this)">Kopyala</button>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Vergi No</span>
-                    <span class="meta-value" id="headerTaxNumber">2111171501</span>
-                    <button class="meta-copy-btn" onclick="copyToClipboard('headerTaxNumber', this)">Kopyala</button>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Telefon</span>
-                    <span class="meta-value" id="headerPhone">+908502410654</span>
-                    <button class="meta-copy-btn" onclick="copyToClipboard('headerPhone', this)">Kopyala</button>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">E-mail</span>
@@ -764,9 +765,9 @@
                     <button class="meta-copy-btn" onclick="copyToClipboard('headerEmail', this)">Kopyala</button>
                 </div>
                 <div class="meta-item">
-                    <span class="meta-label">E-mail</span>
-                    <span class="meta-value" id="headerEmail2">finans@clbyazilim.com</span>
-                    <button class="meta-copy-btn" onclick="copyToClipboard('headerEmail2', this)">Kopyala</button>
+                    <span class="meta-label">Ar-Ge Ofisi (Kargo Adresi)</span>
+                    <span class="meta-value" id="headerAddress"> Esentepe Mh, Akademiyolu Sk, Sakarya Teknokent A Blok No:B04 Serdivan, Sakarya, 54050</span>
+                    <button class="meta-copy-btn" onclick="copyToClipboard('headerAddress', this)">Kopyala</button>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">E-mail</span>
@@ -774,23 +775,34 @@
                     <button class="meta-copy-btn" onclick="copyToClipboard('headerSupportEmail', this)">Kopyala</button>
                 </div>
                 <div class="meta-item">
+                    <span class="meta-label">Vergi Dairesi</span>
+                    <span class="meta-value" id="headerTaxOffice">ETİMESGUT</span>
+                    <button class="meta-copy-btn" onclick="copyToClipboard('headerTaxOffice', this)">Kopyala</button>
+                </div>
+                <div class="meta-item">
                     <span class="meta-label">KEP</span>
                     <span class="meta-value" id="headerKep">clbyazilim@hs01.kep.tr</span>
                     <button class="meta-copy-btn" onclick="copyToClipboard('headerKep', this)">Kopyala</button>
                 </div>
                 <div class="meta-item">
+                    <span class="meta-label">Vergi No</span>
+                    <span class="meta-value" id="headerTaxNumber">2111171501</span>
+                    <button class="meta-copy-btn" onclick="copyToClipboard('headerTaxNumber', this)">Kopyala</button>
+                </div>
+                <div class="meta-item">
                     <span class="meta-label">Web</span>
-                    <span class="meta-value" id="headerWeb">www.clbyazilim.com</span>
+                    <span class="meta-value" id="headerWeb"> <a href="https://clbyazilim.com/" target="_blank">www.clbyazilim.com</a></span>
                     <button class="meta-copy-btn" onclick="copyToClipboard('headerWeb', this)">Kopyala</button>
                 </div>
-            </div>
-
-            <div class="notice-box">
-                <div class="notice-icon">!</div>
-                <div class="notice-content">
-                    <h4>Önemli Güncelleme Bildirimi</h4>
-                    <p>Bankamızın sistem güncellemesi nedeniyle hesap bilgilerimiz değişmiştir. Lütfen ödemelerinizde
-                        aşağıdaki güncel bilgileri kullanınız.</p>
+                <div class="meta-item">
+                    <span class="meta-label">Telefon</span>
+                    <span class="meta-value" id="headerPhone">+908502410654</span>
+                    <button class="meta-copy-btn" onclick="copyToClipboard('headerPhone', this)">Kopyala</button>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Yardım Merkezi</span>
+                    <span class="meta-value" id="headerWeb"> <a href="https://clbyazilim.atlassian.net/servicedesk/" target="_blank">clbyazilim.atlassian.net/servicedesk</a></span>
+                    <button class="meta-copy-btn" onclick="copyToClipboard('headerWeb', this)">Kopyala</button>
                 </div>
             </div>
         </div>
@@ -799,6 +811,15 @@
             <!-- Banka Hesapları -->
             <div class="section">
                 <h2 class="section-title">Banka Hesap Detayları</h2>
+                
+        <div class="notice-box">
+            <div class="notice-icon">!</div>
+            <div class="notice-content">
+                <h4>Önemli Güncelleme Bildirimi</h4>
+                <p> Enpara Şubesi’nin QNB Finansbank bünyesinden ayrılıp Enpara Bank A.Ş. unvanıyla faaliyet göstermeye başlaması nedeniyle firmamızın ENPARA hesap bilgileri değişmiştir. Lütfen muhasebe kayıtlarınızı güncelleyiniz. 
+                Güncel IBAN ve hesap bilgilerimiz aşağıda bilgilerinize sunulmuştur.</p>
+            </div>
+        </div>
                 <div class="banks-container">
 
                     <!-- Enpara Bank A.Ş. -->
